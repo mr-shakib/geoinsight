@@ -13,7 +13,7 @@
 
 A production-grade fleet monitoring dashboard with live vehicle tracking, marker clustering, route visualization, and real-time WebSocket updates — built without any paid map API.
 
-[Live Demo](#) · [Report Bug](https://github.com/yourname/geoinsight/issues) · [Request Feature](https://github.com/yourname/geoinsight/issues)
+[Live Demo](https://geoinsight-smoky.vercel.app/) · [Report Bug](https://github.com/mr-shakib/geoinsight/issues) · [Request Feature](https://github.com/mr-shakib/geoinsight/issues)
 
 </div>
 
@@ -31,6 +31,10 @@ GeoInsight is a full-featured fleet intelligence dashboard that simulates a real
 - Virtualized UI lists keeping performance smooth at 100+ items
 
 > Ideal for companies building fleet management, ride-sharing, or last-mile delivery tools.
+
+
+https://github.com/user-attachments/assets/96ff412a-bf33-44d3-991a-49d59d84e873
+
 
 ---
 
