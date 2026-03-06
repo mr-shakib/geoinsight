@@ -24,38 +24,30 @@ export default function FilterPanel() {
   const setSearchQuery = useVehicleStore((s) => s.setSearchQuery);
 
   return (
-    <div className="px-4 py-3 border-b border-gray-700 space-y-3">
-      {/* Status filter */}
-      <div>
-        <label className="text-xs text-gray-400 uppercase tracking-wider block mb-1.5">
-          Status
-        </label>
-        <div className="flex gap-1 flex-wrap">
-          {STATUS_OPTIONS.map(({ label, value }) => (
-            <button
-              key={value}
-              onClick={() => setStatusFilter(value)}
-              className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${
-                statusFilter === value
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-gray-200"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+    <div className="px-3 py-3 border-b border-slate-100 space-y-2">
+      {/* Status segmented control */}
+      <div className="flex bg-slate-100 border border-slate-200 rounded-lg p-0.5 gap-0.5">
+        {STATUS_OPTIONS.map(({ label, value }) => (
+          <button
+            key={value}
+            onClick={() => setStatusFilter(value)}
+            className={`flex-1 py-1.5 text-[11px] font-medium rounded-md transition-all ${
+              statusFilter === value
+                ? "bg-white text-slate-800 shadow-sm"
+                : "text-slate-400 hover:text-slate-600"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
-      {/* Region filter */}
-      <div>
-        <label className="text-xs text-gray-400 uppercase tracking-wider block mb-1.5">
-          Region
-        </label>
+      {/* Region select */}
+      <div className="relative">
         <select
           value={regionFilter}
           onChange={(e) => setRegionFilter(e.target.value)}
-          className="w-full bg-gray-800 border border-gray-700 rounded-md px-2.5 py-1.5 text-sm text-gray-200 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          className="w-full appearance-none bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-600 focus:outline-none focus:border-slate-300 focus:ring-1 focus:ring-slate-200 pr-7 transition-colors"
         >
           {REGIONS.map((r) => (
             <option key={r} value={r}>
@@ -63,19 +55,20 @@ export default function FilterPanel() {
             </option>
           ))}
         </select>
+        <svg
+          className="absolute right-2 top-1/2 -translate-y-1/2 w-3 h-3 text-slate-400 pointer-events-none"
+          fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
       </div>
 
       {/* Search */}
-      <div>
-        <label className="text-xs text-gray-400 uppercase tracking-wider block mb-1.5">
-          Search
-        </label>
-        <SearchInput
-          value={searchQuery}
-          onChange={setSearchQuery}
-          placeholder="ID or driver name…"
-        />
-      </div>
+      <SearchInput
+        value={searchQuery}
+        onChange={setSearchQuery}
+        placeholder="Search vehicles…"
+      />
     </div>
   );
 }

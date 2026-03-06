@@ -1,6 +1,6 @@
 import { Vehicle } from "@/types";
 import Badge from "@/components/ui/Badge";
-import { Zap, MapPin, Gauge } from "lucide-react";
+import { Fuel, MapPin, Gauge } from "lucide-react";
 
 interface VehicleInfoProps {
   vehicle: Vehicle;
@@ -13,65 +13,64 @@ export default function VehicleInfo({ vehicle }: VehicleInfoProps) {
     <div className="space-y-4">
       {/* Driver header */}
       <div className="flex items-center gap-3">
-        <div className="w-12 h-12 rounded-full bg-gray-700 flex items-center justify-center flex-shrink-0">
-          <span className="text-lg font-bold text-gray-300">
+        <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center flex-shrink-0">
+          <span className="text-sm font-semibold text-slate-600">
             {vehicle.driver.charAt(0)}
           </span>
         </div>
-        <div>
-          <p className="font-semibold text-gray-100">{vehicle.driver}</p>
-          <p className="text-xs text-gray-400">{vehicle.id}</p>
-        </div>
-        <div className="ml-auto">
-          <Badge status={vehicle.status} />
+        <div className="flex-1 min-w-0">
+          <p className="text-sm font-semibold text-slate-800 truncate">{vehicle.driver}</p>
+          <div className="mt-1">
+            <Badge status={vehicle.status} />
+          </div>
         </div>
       </div>
 
-      {/* Stats grid */}
-      <div className="grid grid-cols-2 gap-2">
-        <div className="bg-gray-800 rounded-lg p-3">
-          <div className="flex items-center gap-1.5 mb-1">
-            <Gauge className="w-3.5 h-3.5 text-blue-400" />
-            <span className="text-xs text-gray-400">Speed</span>
+      {/* Stats rows */}
+      <div className="divide-y divide-slate-100">
+        <div className="flex items-center justify-between py-2.5">
+          <div className="flex items-center gap-2">
+            <Gauge className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-xs text-slate-500">Speed</span>
           </div>
-          <p className="text-sm font-semibold text-gray-100">{vehicle.speed} km/h</p>
+          <span className="text-sm font-medium text-slate-700 tabular-nums">
+            {vehicle.speed} <span className="text-xs text-slate-400">km/h</span>
+          </span>
         </div>
 
-        <div className="bg-gray-800 rounded-lg p-3">
-          <div className="flex items-center gap-1.5 mb-1">
-            <Zap className="w-3.5 h-3.5 text-yellow-400" />
-            <span className="text-xs text-gray-400">Fuel</span>
+        <div className="flex items-center justify-between py-2.5">
+          <div className="flex items-center gap-2">
+            <Fuel className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-xs text-slate-500">Fuel</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            <div className="flex-1 bg-gray-700 rounded-full h-1.5">
+          <div className="flex items-center gap-2.5">
+            <div className="w-20 bg-slate-100 rounded-full h-1.5 overflow-hidden">
               <div
-                className={`h-1.5 rounded-full ${
+                className={`h-full rounded-full transition-all duration-500 ${
                   vehicle.fuelLevel > 50
-                    ? "bg-green-500"
+                    ? "bg-emerald-500"
                     : vehicle.fuelLevel > 20
-                    ? "bg-yellow-500"
+                    ? "bg-amber-400"
                     : "bg-red-500"
                 }`}
                 style={{ width: `${vehicle.fuelLevel}%` }}
               />
             </div>
-            <span className="text-xs font-semibold text-gray-200">
+            <span className="text-xs font-medium text-slate-600 tabular-nums w-7 text-right">
               {vehicle.fuelLevel}%
             </span>
           </div>
         </div>
-      </div>
 
-      {/* Location */}
-      <div className="bg-gray-800 rounded-lg p-3">
-        <div className="flex items-center gap-1.5 mb-1">
-          <MapPin className="w-3.5 h-3.5 text-red-400" />
-          <span className="text-xs text-gray-400">Location</span>
+        <div className="flex items-center justify-between py-2.5">
+          <div className="flex items-center gap-2">
+            <MapPin className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-xs text-slate-500">Coordinates</span>
+          </div>
+          <span className="text-[11px] font-mono text-slate-500">
+            {lat.toFixed(4)}, {lng.toFixed(4)}
+          </span>
         </div>
-        <p className="text-sm text-gray-300">{vehicle.region}</p>
-        <p className="text-xs text-gray-500 mt-0.5 font-mono">
-          {lat.toFixed(5)}, {lng.toFixed(5)}
-        </p>
       </div>
     </div>
   );
