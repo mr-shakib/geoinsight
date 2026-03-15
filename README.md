@@ -338,7 +338,7 @@ interface VehicleStore {
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourname/geoinsight.git
+git clone https://github.com/mr-shakib/geoinsight.git
 cd geoinsight
 
 # Install dependencies
